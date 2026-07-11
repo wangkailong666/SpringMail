@@ -1,0 +1,24 @@
+name = "novamail-tracker"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+
+# R2 bucket for storing tracking logs
+[[r2_buckets]]
+binding = "TRACKER_BUCKET"
+bucket_name = "novamail-tracker-logs"
+
+# Environment variables
+[vars]
+STATS_API_TOKEN = ""  # Set via `wrangler secret put STATS_API_TOKEN`
+
+# Production environment
+[env.production]
+name = "novamail-tracker-prod"
+
+[env.production.vars]
+STATS_API_TOKEN = ""  # Set via `wrangler secret put STATS_API_TOKEN --env production`
+
+# Route configuration (uncomment and set your domain)
+# routes = [
+#   { pattern = "tracker.example.com", zone_id = "your-zone-id" }
+#]
